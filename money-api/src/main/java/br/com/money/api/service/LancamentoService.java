@@ -21,7 +21,7 @@ public class LancamentoService {
 	private LancamentoRepository lancamentoRepository;
 	
 	public Lancamento salvar(@Valid Lancamento lancamento) {
-		Pessoa pessoa = pessoaRepository.findById(lancamento.getPessoa().getCodigo()).orElse(null);
+		Pessoa pessoa = pessoaRepository.findById(lancamento.getPessoa().getCodigo()).orElse(null);;
 		if (pessoa == null || pessoa.isInativo()) {
 			throw new PessoaInexistenteOuInativaExcpetion();
 		}
