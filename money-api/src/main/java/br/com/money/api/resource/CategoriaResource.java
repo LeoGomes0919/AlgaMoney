@@ -34,7 +34,7 @@ public class CategoriaResource {
 
 	@Autowired
 	private ApplicationEventPublisher publisher;
-	
+
 	@Autowired
 	private CategoriaService categoriaService;
 
