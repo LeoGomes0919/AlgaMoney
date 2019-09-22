@@ -16,6 +16,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name = "lancamento")
 public class Lancamento {
@@ -30,9 +32,11 @@ public class Lancamento {
 
 	@NotNull
 	@Column(name = "data_vencimento")
+	@JsonFormat(pattern="yyyy-MM-dd", timezone="Brazil/East")
 	private LocalDate dataVencimento;
 
 	@Column(name = "data_pagamento")
+	@JsonFormat(pattern="yyyy-MM-dd", timezone="Brazil/East")
 	private LocalDate dataPagamento;
 
 	@NotNull

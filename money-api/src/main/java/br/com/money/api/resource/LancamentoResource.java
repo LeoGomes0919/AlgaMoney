@@ -31,6 +31,7 @@ import br.com.money.api.exceptionhandler.MoneyExceptionHandler.Erro;
 import br.com.money.api.model.Lancamento;
 import br.com.money.api.repository.LancamentoRepository;
 import br.com.money.api.repository.filter.LancamentoFilter;
+import br.com.money.api.repository.projection.ResumoLancamento;
 import br.com.money.api.service.LancamentoService;
 import br.com.money.api.service.exception.PessoaInexistenteOuInativaExcpetion;
 
@@ -54,6 +55,12 @@ public class LancamentoResource {
 	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_LANCAMENTO') and #oauth2.hasScope('read')")
 	public Page<Lancamento> pesquisar(LancamentoFilter lancamentoFilter, Pageable pageable) {
 		return lancamentoRepository.filtrar(lancamentoFilter, pageable);
+	}
+	
+	@GetMapping(params = "resumo")
+	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_LANCAMENTO') and #oauth2.hasScope('read')")
+	public Page<ResumoLancamento> resumir(LancamentoFilter filter, Pageable pageable) {
+		return lancamentoRepository.resumir(filter, pageable);
 	}
 	
 	@GetMapping("/{codigo}")
