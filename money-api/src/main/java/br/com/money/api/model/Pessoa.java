@@ -9,6 +9,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -63,6 +64,7 @@ public class Pessoa {
 
 	@JsonIgnoreProperties
 	@Transient
+	@JsonIgnore
 	public boolean isInativo() {
 		return !this.ativo;
 	}
