@@ -1,5 +1,6 @@
 package br.com.money.api.resource;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -27,6 +28,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.money.api.dto.LancamentoEstatisticaCategoria;
+import br.com.money.api.dto.LancamentoEstatisticaDia;
 import br.com.money.api.event.RecursoCriadoEvent;
 import br.com.money.api.exceptionhandler.MoneyExceptionHandler.Erro;
 import br.com.money.api.model.Lancamento;
@@ -97,6 +100,18 @@ public class LancamentoResource {
 		}
 	}
 
+	@GetMapping("/estatistica/por-categoria")
+	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_LANCAMENTO') and #oauth2.hasScope('read')")
+	public List<LancamentoEstatisticaCategoria> porCategoria() {
+		return this.lancamentoRepository.porCategoria(LocalDate.now());
+	}
+	
+	@GetMapping("/estatistica/por-dia")
+	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_LANCAMENTO') and #oauth2.hasScope('read')")
+	public List<LancamentoEstatisticaDia> porDia() {
+		return this.lancamentoRepository.porDia(LocalDate.now());
+	}
+	
 	@ExceptionHandler({ PessoaInexistenteOuInativaExcpetion.class })
 	public ResponseEntity<Object> handlePessoaInexistenteOuInativaExcpetion(PessoaInexistenteOuInativaExcpetion ex) {
 		String mensagemUsuario = messageSource.getMessage("pessoa.inexistente-ou-inativa", null,
