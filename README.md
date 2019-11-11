@@ -1,2 +1,2 @@
 # AlgaMoney
-Angular, Spring Boot, PrimeNG
+Spring Boot, Spring Data JPA
