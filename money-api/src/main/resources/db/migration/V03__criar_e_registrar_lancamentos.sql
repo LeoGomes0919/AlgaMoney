@@ -13,7 +13,7 @@ CREATE TABLE lancamento (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, codigo_categoria, codigo_pessoa) values ('Salário mensal', '2019-11-10', '2019-11-15', 6500.00, 'Distribuição de lucros', 'RECEITA', 1, 1);
-INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, codigo_categoria, codigo_pessoa) values ('Supermercado', '2019-02-10', '2019-02-10', 100.32, null, 'DESPESA', 2, 2);
+INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, codigo_categoria, codigo_pessoa) values ('Supermercado', '2019-02-10', null, 100.32, null, 'DESPESA', 2, 2);
 INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, codigo_categoria, codigo_pessoa) values ('Academia', '2019-06-10', '2019-06-15', 120, null, 'DESPESA', 3, 3);
 INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, codigo_categoria, codigo_pessoa) values ('Conta de luz', '2019-02-10', '2019-02-10', 110.44, null, 'DESPESA', 3, 4);
 INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, codigo_categoria, codigo_pessoa) values ('Conta de água', '2019-06-10', '2019-06-10', 200.30, null, 'DESPESA', 3, 5);
