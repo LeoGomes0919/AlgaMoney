@@ -24,13 +24,23 @@ public class Contato {
 
 	@Email
 	@NotNull
+	private String email;
+	
+	@NotNull
 	private String telefone;
 
-	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "codigo_pessoa")
 	private Pessoa pessoa;
 
+	public String getEmail() {
+		return email;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 	public Long getCodigo() {
 		return codigo;
 	}

@@ -21,6 +21,7 @@
 		<jasperreports.version>6.10.0</jasperreports.version>
 		<jasperreports-functions.version>6.10.0</jasperreports-functions.version>
 		<jasperreports-fonts.version>6.10.0</jasperreports-fonts.version>
+
 	</properties>
 
 	<dependencies>

@@ -19,24 +19,25 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "pessoa")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Pessoa {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
-	
+
 	@NotNull
 	private String nome;
-	
+
 	@Embedded
 	private Endereco endereco;
-	
+
 	@NotNull
 	private Boolean ativo;
-	
+
+	@JsonIgnoreProperties("pessoa")
 	@Valid
-	@OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Contato> contatos;
 
 	public List<Contato> getContatos() {
@@ -85,7 +86,7 @@ public class Pessoa {
 	public boolean isInativo() {
 		return !this.ativo;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -110,5 +111,5 @@ public class Pessoa {
 			return false;
 		return true;
 	}
-	
+
 }

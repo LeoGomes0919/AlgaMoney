@@ -59,6 +59,7 @@ public class LancamentoResource {
 	@Autowired
 	private LancamentoService lancamentoService;
 
+
 	@GetMapping
 	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_LANCAMENTO') and #oauth2.hasScope('read')")
 	public Page<Lancamento> pesquisar(LancamentoFilter lancamentoFilter, Pageable pageable) {
@@ -109,26 +110,24 @@ public class LancamentoResource {
 	public List<LancamentoEstatisticaCategoria> porCategoria() {
 		return this.lancamentoRepository.porCategoria(LocalDate.now());
 	}
-	
+
 	@GetMapping("/estatistica/por-dia")
 	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_LANCAMENTO') and #oauth2.hasScope('read')")
 	public List<LancamentoEstatisticaDia> porDia() {
 		return this.lancamentoRepository.porDia(LocalDate.now());
 	}
-	
+
 	@GetMapping("/relatorios/por-pessoa")
 	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_LANCAMENTO') and #oauth2.hasScope('read')")
 	public ResponseEntity<byte[]> relatorioPorPessoa(
-			@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate inicio, 
-			@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fim) throws Exception{
+			@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate inicio,
+			@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fim) throws Exception {
 		byte[] relatorio = lancamentoService.relatorioPorPessoa(inicio, fim);
-		
-		return ResponseEntity.ok().header(
-				HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_PDF_VALUE)
-				.body(relatorio);
-				
+
+		return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_PDF_VALUE).body(relatorio);
+
 	}
-	
+
 	@ExceptionHandler({ PessoaInexistenteOuInativaExcpetion.class })
 	public ResponseEntity<Object> handlePessoaInexistenteOuInativaExcpetion(PessoaInexistenteOuInativaExcpetion ex) {
 		String mensagemUsuario = messageSource.getMessage("pessoa.inexistente-ou-inativa", null,
